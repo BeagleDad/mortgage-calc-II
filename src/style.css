@@ -1,0 +1,153 @@
+body {
+  margin: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* .Rectangle-35 {
+  width: 300px;
+  height: 431px;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+} */
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(1fr 1fr);
+}
+.title {
+  grid-column: 1;
+  font-size: 22px;
+  padding: 2px;
+  border-bottom: 1px solid #9e99a3;
+}
+.user-prompt {
+  grid-column: 1/3;
+  grid-row: 1;
+  padding: 2px;
+  border-bottom: 1px solid #9e99a3;
+}
+#the-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 60px 1fr 1fr 1fr 1fr;
+  border: 2px solid pink;
+}
+#year-heading {
+  grid-column: 1/3;
+  grid-row: 2;
+}
+.slider-block {
+  grid-column: 1/3;
+  grid-row: 3;
+  align-self: center;
+  justify-self: left;
+
+  /* background-color: grey; */
+}
+
+#year-value {
+  grid-column: 3;
+  grid-row: 3;
+}
+.slider {
+  -webkit-appearance: none;
+  width: 300px;
+  height: 15px;
+  border-radius: 5px;
+  background: #1091cc;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  box-shadow: 0 1px 2px 0 var(--black-27);
+  background-color: #ffffff;
+}
+
+.slider-value {
+  width: 50px;
+  height: 40px;
+  align-content: center;
+  border-radius: 4px;
+  border: solid 1px #a6a6a6;
+  background-color: #ffffff;
+}
+
+#rate-heading {
+  grid-column: 1/3;
+  grid-row: 4;
+}
+#rate-slider {
+  grid-column: 1/3;
+  grid-row: 5;
+  align-self: center;
+  justify-self: left;
+
+  /* background-color: grey; */
+}
+#rate-value {
+  grid-column: 3;
+  grid-row: 5;
+}
+.input {
+  height: 40px;
+  border-radius: 4px;
+  box-shadow: 0 0 4px 0 rgba(62, 61, 63, 0.62);
+  border: solid 1px #3e3d3f;
+  background-color: #ffffff;
+}
+#loan-heading {
+  grid-column: 1;
+  grid-row: 6;
+}
+#loan-input {
+  grid-column: 1/3;
+  grid-row: 7;
+  width: 390px;
+}
+#tax-heading {
+  grid-column: 1;
+  grid-row: 8;
+}
+#tax-input {
+  grid-column: 1;
+  grid-row: 9;
+}
+#insurance-heading {
+  grid-column: 2;
+  grid-row: 8;
+}
+#insurance-input {
+  grid-column: 2;
+  grid-row: 9;
+}
+#submit-btn {
+  grid-column: 1/3;
+  grid-row: 10;
+  width: 440px;
+  height: 40px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.25em;
+  background-color: #0077c0;
+}
+.results-wrapper {
+  width: 298px;
+  height: 440px;
+}
+.results {
+  width: 298px;
+  height: 440px;
+  background-color: #eaf6fa;
+}
+
+/* Classes used by validator */
+div:invalid {
+  color: red;
+}

@@ -1,0 +1,25 @@
+{
+  "name": "mortgage-calc-II",
+  "version": "1.0.0",
+  "description": "Revamped mortgage calculator using webpack and babel",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeagleDad/mortgage-calc-II.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BeagleDad/mortgage-calc-II/issues"
+  },
+  "homepage": "https://github.com/BeagleDad/mortgage-calc-II#readme",
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  }
+}
