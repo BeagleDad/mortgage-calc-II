@@ -1,4 +1,5 @@
 import Validator from "./validator";
+import Results from "./results";
 
 //const Validator = new Validator();
 
@@ -11,6 +12,7 @@ export default class AppMain {
     this.annualTax = 0;
     this.annualInsurance = 0;
     this.validator = new Validator();
+    this.results = new Results();
     //console.log("in constructor");
     document.addEventListener(
       "DOMContentLoaded",
@@ -179,23 +181,6 @@ export default class AppMain {
     );
   }
 
-  calcPrincipleAndInterest() {
-    let principleAndInterest =
-      ((this.interestRate / 100 / 12) * this.loanAmount) /
-      (1 -
-        Math.pow(1 + this.interestRate / 100 / 12, -this.yearsOfMortgage * 12));
-    //console.log(principleAndInterest);
-    return principleAndInterest;
-  }
-
-  calcMonthlyTax(annTax) {
-    return annTax / 12;
-  }
-
-  calcMonthlyInsurance(annInsurance) {
-    return annInsurance / 12;
-  }
-
   // Handle submit
   handleSubmit(e) {
     e.preventDefault();
@@ -204,21 +189,13 @@ export default class AppMain {
     // const loanAmtField = document.getElementById("loan-input");
     if (this.validator.checkIfEmpty(this.loanInput)) return;
 
-    // Do the calculations
-    const principleAndInterest = this.calcPrincipleAndInterest();
-    const monthlyTax = this.calcMonthlyTax(this.annualTax);
-    const monthlyInsurance = this.calcMonthlyInsurance(this.annualInsurance);
-    const monthlyPayment = principleAndInterest + monthlyTax + monthlyInsurance;
-    console.log(
-      "pni: " +
-        principleAndInterest.toFixed(2) +
-        " tax: " +
-        monthlyTax.toFixed(2) +
-        " insurance: " +
-        monthlyInsurance.toFixed(2) +
-        " monthly payment: " +
-        monthlyPayment.toFixed(2)
-    );
+    this.results.calcResults({
+      interestRate: this.interestRate,
+      loanAmount: this.loanAmount,
+      yearsOfMortgage: this.yearsOfMortgage,
+      annualInsurance: this.annualInsurance,
+      annualTax: this.annualTax
+    });
   }
   setupForm() {
     document
