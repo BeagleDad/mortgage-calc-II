@@ -50,20 +50,25 @@
         <div id="rate-value" class="slider-value"></div>
 
         <div class="section-heading" id="loan-heading">Loan Amount</div>
-        <input
-          id="loan-input"
-          type="text"
-          class="input loan-input"
-          placeholder="$"
-        />
+
+        <div id="loan-input-wrapper">
+          <input
+            id="loan-input"
+            name="Loan Amount"
+            type="text"
+            class="input loan-input"
+            placeholder=" $"
+          />
+          <div class="error-portal"></div>
+        </div>
 
         <div class="section-heading" id="tax-heading">Annual Tax</div>
-        <input id="tax-input" type="text" class="input" />
+        <input id="tax-input" type="text" class="input" placeholder="$" />
 
         <div id="insurance-heading" class="section-heading">
           Annual Insurance
         </div>
-        <input id="insurance-input" type="text" class="input" />
+        <input id="insurance-input" type="text" class="input" placeholder="$" />
 
         <input type="submit" id="submit-btn" value="Calculate" />
       </form>

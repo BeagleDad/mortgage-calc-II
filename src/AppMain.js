@@ -10,8 +10,8 @@ export default class AppMain {
     this.loanAmount = 0;
     this.annualTax = 0;
     this.annualInsurance = 0;
-
-    console.log("in constructor");
+    this.validator = new Validator();
+    //console.log("in constructor");
     document.addEventListener(
       "DOMContentLoaded",
       () => {
@@ -27,13 +27,13 @@ export default class AppMain {
     // Get the elements for later use so only have to get them once.
     this.yearSlide = document.getElementById("year-slide");
     this.yearText = document.getElementById("year-value");
+    this.rateText = document.getElementById("rate-value");
     this.setupYearInput();
     this.setupRateSlider();
     this.setupLoanInput();
     this.setupTaxInput();
     this.setupInsuranceInput();
     this.setupForm();
-    console.log("finished setup", this.yearText);
   }
 
   // Setup year slider
@@ -48,8 +48,8 @@ export default class AppMain {
   setupYearInput() {
     this.yearSlide.value = this.yearsOfMortgage;
     this.yearText.innerText = this.yearsOfMortgage;
-    this.yearSlide.addEventListener("input", this.updateSlider.bind(this));
-    console.log(this.yearSlide);
+    this.yearSlide.addEventListener("input", this.updateYearSlider.bind(this));
+    // console.log(this.yearSlide);
   }
   /**
    * Event handler for the year input.
@@ -57,10 +57,10 @@ export default class AppMain {
    * @param {*} e - the event object.
    * @memberof AppMain
    */
-  updateSlider(e) {
+  updateYearSlider(e) {
     this.yearsOfMortgage = e.target.value;
     this.yearText.innerText = this.yearsOfMortgage;
-    console.log(this.yearsOfMortgage);
+    //console.log(this.yearsOfMortgage);
   }
 
   // Setup rate slider
@@ -73,7 +73,7 @@ export default class AppMain {
    */
   updateRateSlider(e) {
     this.interestRate = e.target.value;
-    document.getElementById("rate-value").innerText = this.interestRate;
+    this.rateText.innerText = this.interestRate;
   }
   /**
    * Sets up the Interest Rate input
@@ -85,7 +85,7 @@ export default class AppMain {
   setupRateSlider() {
     const rateSlide = document.getElementById("rate-slide");
     rateSlide.value = this.interestRate;
-    document.getElementById("rate-value").innerText = this.interestRate;
+    this.rateText.innerText = this.interestRate;
     rateSlide.addEventListener("input", this.updateRateSlider.bind(this));
   }
 
@@ -98,9 +98,10 @@ export default class AppMain {
    * @memberof AppMain
    */
   setupLoanInput() {
-    const loanInput = document.getElementById("loan-input");
-    loanInput.addEventListener("input", this.updateLoanAmt.bind(this));
+    this.loanInput = document.getElementById("loan-input");
+    this.loanInput.addEventListener("input", this.updateLoanAmt.bind(this));
   }
+
   /**
    *Event handler for the Loan Amount input
    *
@@ -108,8 +109,12 @@ export default class AppMain {
    * @memberof AppMain
    */
   updateLoanAmt(e) {
-    this.loanAmount = e.target.value;
-    document.getElementById("loan-input").innerText = this.loanAmount;
+    // Remove formatting before storing value in class.
+    //console.log(e.target.value);
+    this.loanAmount = e.target.value.replace(/\$|\s|,/, "").trim();
+    //console.log("stored: ", this.loanAmount);
+    // Add formatting to show in DOM
+    this.loanInput.value = `$ ${this.loanAmount}`;
   }
 
   // Setup tax input
@@ -120,9 +125,10 @@ export default class AppMain {
    * @memberof AppMain
    */
   updateTax(e) {
-    this.annualTax = e.target.value;
-    document.getElementById("tax-input").innerText = this.annualTax;
-    console.log(this.annualTax);
+    // Remove formatting before storing value in class.
+    this.annualTax = e.target.value.replace(/\$|\s|,/, "").trim();
+    // Add formatting to show in DOM
+    this.taxInput.value = `$ ${this.annualTax}`;
   }
   /**
    * Sets up the Tax Amount input
@@ -131,10 +137,19 @@ export default class AppMain {
    * @memberof AppMain
    */
   setupTaxInput() {
-    const taxInput = document.getElementById("tax-input");
-    taxInput.addEventListener("input", this.updateTax.bind(this));
+    this.taxInput = document.getElementById("tax-input");
+    this.taxInput.addEventListener("input", this.updateTax.bind(this));
   }
-
+  // todo: may not use this.
+  formatCurrency(rv) {
+    //console.log("raw val: " + rv);
+    const value = rv.replace(/,/g, "");
+    var rval = parseFloat(value).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD"
+    });
+    return rval;
+  }
   // Setup Insurance Input
   /**
    * Event handler for Insurance Input
@@ -143,19 +158,25 @@ export default class AppMain {
    * @memberof AppMain
    */
   updateInsurance(e) {
-    this.annualInsurance = e.target.value;
-    document.getElementById("insurance-input").innerText = this.annualInsurance;
-    console.log("insurance:", e);
+    // Remove formatting before storing value in class.
+    this.annualInsurance = e.target.value.replace(/\$|\s|,/, "").trim();
+
+    // Add formatting to show in DOM
+    this.insuranceInput.value = `$ ${this.annualInsurance}`;
   }
   /**
    * Sets up the Insurance amount input,
+   * stores the element reference and
    * adds the event listener.
    *
    * @memberof AppMain
    */
   setupInsuranceInput() {
-    const insuranceInput = document.getElementById("insurance-input");
-    insuranceInput.addEventListener("input", this.updateInsurance.bind(this));
+    this.insuranceInput = document.getElementById("insurance-input");
+    this.insuranceInput.addEventListener(
+      "input",
+      this.updateInsurance.bind(this)
+    );
   }
 
   calcPrincipleAndInterest() {
@@ -180,8 +201,8 @@ export default class AppMain {
     e.preventDefault();
 
     // validate fields
-    const loanAmtField = document.getElementById("loan-input");
-    //if (Validator.checkIfEmpty(loanAmtField)) return;
+    // const loanAmtField = document.getElementById("loan-input");
+    if (this.validator.checkIfEmpty(this.loanInput)) return;
 
     // Do the calculations
     const principleAndInterest = this.calcPrincipleAndInterest();

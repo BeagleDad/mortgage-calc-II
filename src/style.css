@@ -106,9 +106,13 @@ body {
   grid-row: 6;
 }
 #loan-input {
+  width: 390px;
+  padding-left: 1em;
+}
+#loan-input-wrapper {
   grid-column: 1/3;
   grid-row: 7;
-  width: 390px;
+  /* width: 390px; */
 }
 #tax-heading {
   grid-column: 1;
@@ -117,6 +121,7 @@ body {
 #tax-input {
   grid-column: 1;
   grid-row: 9;
+  padding-left: 1em;
 }
 #insurance-heading {
   grid-column: 2;
@@ -125,6 +130,7 @@ body {
 #insurance-input {
   grid-column: 2;
   grid-row: 9;
+  padding-left: 1em;
 }
 #submit-btn {
   grid-column: 1/3;
@@ -148,6 +154,12 @@ body {
 }
 
 /* Classes used by validator */
-div:invalid {
+.has_error {
+  border-color: red;
+}
+.error-portal {
   color: red;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px;
 }
