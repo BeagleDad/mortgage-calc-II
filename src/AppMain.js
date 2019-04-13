@@ -187,7 +187,8 @@ export default class AppMain {
 
     // validate fields
     // const loanAmtField = document.getElementById("loan-input");
-    if (this.validator.checkIfEmpty(this.loanInput)) return;
+    console.log(this.validator.validateCurrencyField(this.loanInput));
+    if (!this.validator.validateCurrencyField(this.loanInput)) return;
 
     this.results.calcResults({
       interestRate: this.interestRate,

@@ -5,6 +5,25 @@ export default class Validator {
       invalidNumber: "value is invalid"
     };
   }
+
+  // Validators
+  validateCurrencyField(field) {
+    // Check if empty
+    if (this.checkIfEmpty(field)) {
+      return false;
+    }
+    // Check for valid number
+
+    // Decimals required, commas optional
+    const regEx = /^[0-9]{1,}\.{1}[0-9]{2}$/;
+    //const regEx = /^$?(([1-9]d{0,2}(,d{3})*)|0)?.d{1,2}$/;
+    return this.matchWithRegEx(
+      regEx,
+      field,
+      `${field.name} ${this.errorMsg.invalidNumber}`
+    );
+  }
+
   // Utility functions
   checkIfEmpty(field) {
     if (this.isEmpty(field.value.trim())) {
@@ -31,5 +50,15 @@ export default class Validator {
   setValid(field) {
     field.classList.remove("has_error");
     field.nextElementSibling.innerHTML = "";
+  }
+
+  matchWithRegEx(regEx, field, message) {
+    if (field.value.match(regEx)) {
+      this.setValid(field);
+      return true;
+    } else {
+      this.setInvalid(field, message);
+      return false;
+    }
   }
 }
