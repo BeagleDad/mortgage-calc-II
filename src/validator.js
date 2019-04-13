@@ -1,7 +1,7 @@
 export default class Validator {
   constructor() {
     this.errorMsg = {
-      required: "is required",
+      required: "is mandatory",
       invalidNumber: "value is invalid"
     };
   }
@@ -14,9 +14,8 @@ export default class Validator {
     }
     // Check for valid number
 
-    // Decimals required, commas optional
-    const regEx = /^[0-9]{1,}\.{1}[0-9]{2}$/;
-    //const regEx = /^$?(([1-9]d{0,2}(,d{3})*)|0)?.d{1,2}$/;
+    // Decimals and commas optional
+    const regEx = /^\$?\s?((\d{1,3})(?:,[0-9]{3}){0,1}|(\d{1})(?:,[0-9]{3}){0,2}|(\d{1,7}))(\.\d{1,2})?$/g;
     return this.matchWithRegEx(
       regEx,
       field,
@@ -53,6 +52,7 @@ export default class Validator {
   }
 
   matchWithRegEx(regEx, field, message) {
+    console.log(field.value);
     if (field.value.match(regEx)) {
       this.setValid(field);
       return true;
