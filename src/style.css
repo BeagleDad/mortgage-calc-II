@@ -11,14 +11,25 @@ body {
   box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
 } */
-
+.main-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+}
 .title {
+  flex: 1;
   color: #006ea0;
   font-size: 22px;
   padding: 2px;
   border-bottom: 1px solid #9e99a3;
 }
 #the-form {
+  flex: 1;
+  display: flex;
+  max-width: 24em;
+  min-width: 20em;
+  flex-direction: column;
   border-radius: 4px;
   /* max-width: 100%; */
   color: #3e3d3f;
@@ -35,28 +46,24 @@ body {
 .row {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
   align-items: center;
-  width: 100%;
+  flex:1;
 }
 
 .column {
   display: flex;
   flex-direction: column;
-  flex-basis: 100%;
   flex: 1;
 }
 .flex-slider-block {
   /* justify-content: space-around; */
   margin: 1em 0 1em 0;
 }
-#year-slider {
-  background-color: lavender;
-}
 #year-slide {
   padding-left: 1.6em;
 }
 
+/* Slider input formatting */
 input[type="range"] {
   -webkit-appearance: none;
   margin: 6.8px 0;
@@ -103,39 +110,32 @@ input[type="range"]::-webkit-slider-thumb {
   margin-left: 2em;
 }
 
-#text-inputs input {
+#text-inputs  input {
   height: 40px;
   border-radius: 4px;
   box-shadow: 0 0 4px 0 rgba(62, 61, 63, 0.62);
   border: solid 1px #3e3d3f;
   background-color: #ffffff;
+  padding-left: 1em;
+  
 }
 .section-heading {
   font-size: 12px;
 }
+#tax-pni{
 
-#loan-input-wrapper {
-  width: 100%;
+}
+#tax-pni input{
+  width: 85%;
 }
 
+/* #loan-input-wrapper{
+  margin: 1em; 
+} */
 #loan-input-wrapper input {
-  width: 100%;
+  width: 93%;
 }
 
-#tax-block input {
-  padding-left: 1em;
-}
-#tax-block {
-  display: inline-block;
-}
-#insurance-block {
-  display: inline-block;
-}
-#insurance-input {
-  grid-column: 2;
-  grid-row: 9;
-  padding-left: 1em;
-}
 #submit-btn {
   grid-column: 1/3;
   grid-row: 10;
@@ -201,16 +201,10 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 /* Media Queries */
-@media (min-width: 700px) {
+/* @media (min-width: 700px) {
   body {
     /* background-color: rgb(176, 188, 211); */
     flex-wrap: nowrap;
     justify-content: space-around;
   }
-
-  .main-wrapper {
-    display: flex;
-    justify-content: left;
-    flex-wrap: nowrap;
-  }
-}
+} */
