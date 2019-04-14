@@ -14,7 +14,7 @@ export default class Validator {
     }
     // Check for valid number
 
-    // Decimals and commas optional
+    // regex: dollar sign, decimals, and commas optional, but limited to eight sig figs
     const regEx = /^\$?\s?((\d{1,3})(?:,[0-9]{3}){0,1}|(\d{1})(?:,[0-9]{3}){0,2}|(\d{1,7}))(\.\d{1,2})?$/g;
     return this.matchWithRegEx(
       regEx,

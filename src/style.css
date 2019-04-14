@@ -47,7 +47,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  flex:1;
+  flex: 1;
 }
 
 .column {
@@ -110,22 +110,20 @@ input[type="range"]::-webkit-slider-thumb {
   margin-left: 2em;
 }
 
-#text-inputs  input {
+#text-inputs input {
   height: 40px;
   border-radius: 4px;
   box-shadow: 0 0 4px 0 rgba(62, 61, 63, 0.62);
   border: solid 1px #3e3d3f;
   background-color: #ffffff;
   padding-left: 1em;
-  
 }
 .section-heading {
   font-size: 12px;
 }
-#tax-pni{
-
+#tax-pni {
 }
-#tax-pni input{
+#tax-pni input {
   width: 85%;
 }
 
@@ -191,7 +189,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* Validator  */
 .has-error {
-  border-color: red;
+  border-color: red !important;
 }
 .error-portal {
   color: red;
@@ -203,7 +201,7 @@ input[type="range"]::-webkit-slider-thumb {
 /* Media Queries */
 /* @media (min-width: 700px) {
   body {
-    /* background-color: rgb(176, 188, 211); */
+    background-color: rgb(176, 188, 211);
     flex-wrap: nowrap;
     justify-content: space-around;
   }
