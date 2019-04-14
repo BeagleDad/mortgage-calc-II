@@ -190,7 +190,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 /* Validator  */
-.has_error {
+.has-error {
   border-color: red;
 }
 .error-portal {

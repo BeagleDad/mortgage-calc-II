@@ -43,16 +43,15 @@ export default class Validator {
     }
   }
   setInvalid(field, message) {
-    field.classList.add("has_error");
+    field.classList.add("has-error");
     field.nextElementSibling.innerHTML = message;
   }
   setValid(field) {
-    field.classList.remove("has_error");
+    field.classList.remove("has-error");
     field.nextElementSibling.innerHTML = "";
   }
 
   matchWithRegEx(regEx, field, message) {
-    console.log(field.value);
     if (field.value.match(regEx)) {
       this.setValid(field);
       return true;
