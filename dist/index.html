@@ -9,9 +9,9 @@
     <title>Mortgage Calculator</title>
   </head>
   <body>
-    <div class="wrapper">
-      <div class="title">Mortgage Calculator</div>
+    <div class="main-wrapper">
       <form id="the-form" class="entry-form">
+        <header class="title">Mortgage Calculator</header>
         <div class="user-prompt">Change values to calculate your results</div>
 
         <!-- Year Slider Block -->
@@ -100,7 +100,7 @@
 
         <input type="submit" id="submit-btn" value="Calculate" />
       </form>
-      <div class="results-wrapper">
+      <div class="results-wrapper" id="results-section">
         <div class="results-title">Your Results</div>
         <div class="result-heading">Principle and Interest</div>
         <div class="result" id="res-p-i">$--</div>

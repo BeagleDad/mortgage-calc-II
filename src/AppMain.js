@@ -203,6 +203,13 @@ export default class AppMain {
       annualInsurance: this.annualInsurance,
       annualTax: this.annualTax
     });
+    //this.animateResultView();
+  }
+  animateResultView() {
+    const elem = document.getElementById("results-section");
+    //targetElem.scrollIntoView({ behavior: "smooth" });
+    elem.style.transition = "left 1s ease-out 0s";
+    elem.style.left = "470px";
   }
   setupForm() {
     document
