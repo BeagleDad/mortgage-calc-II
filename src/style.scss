@@ -158,7 +158,7 @@ input[type="range"]::-webkit-slider-thumb {
 
   overflow: hidden;
   /*position: fixed;*/ /* Stay in place */
-  /*z-index: -1;*/ /* behind main view */
+  z-index: -1; /* behind main view */
 }
 
 .results-title {
