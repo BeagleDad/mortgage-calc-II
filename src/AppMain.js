@@ -203,14 +203,21 @@ export default class AppMain {
       annualInsurance: this.annualInsurance,
       annualTax: this.annualTax
     });
-    //this.animateResultView();
+    this.animateResultView();
   }
+  /**
+   * Animate the results view for small (stacked) layout
+   *
+   * @memberof AppMain
+   */
   animateResultView() {
+    const targetElem = document.getElementById("scroll-bottom-target");
     const elem = document.getElementById("results-section");
-    //targetElem.scrollIntoView({ behavior: "smooth" });
-    elem.style.transition = "left 1s ease-out 0s";
-    elem.style.left = "470px";
+    targetElem.scrollIntoView({ behavior: "smooth", block: "end" });
+    //elem.style.transition = "height 1s ease-out 0s";
+    //elem.style.height = "470px";
   }
+
   setupForm() {
     document
       .getElementById("the-form")
