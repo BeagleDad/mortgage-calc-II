@@ -13,47 +13,38 @@ body {
 } */
 .main-wrapper {
   display: flex;
-  min-height: 100vh;
+  width: 100%;
   flex-direction: column;
-  margin: 0;
 }
 .title {
-  flex: 1;
   color: #006ea0;
   font-size: 22px;
   padding: 2px;
   border-bottom: 1px solid #9e99a3;
 }
 #the-form {
-  flex: 1;
   display: flex;
-  max-width: 24em;
-  min-width: 20em;
   flex-direction: column;
   border-radius: 4px;
-  /* max-width: 100%; */
   color: #3e3d3f;
   background-color: white;
   /* desktop: width: 470px; */
   box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.1);
   padding: 1em;
-  /* margin: 1px; */
 }
 #the-form .user-prompt {
   padding: 2px;
   border-bottom: 1px solid #9e99a3;
 }
+/* Flexbox classes */
 .row {
   display: flex;
   flex-direction: row;
   align-items: center;
-  flex: 1;
 }
-
 .column {
   display: flex;
   flex-direction: column;
-  flex: 1;
 }
 .flex-slider-block {
   /* justify-content: space-around; */
@@ -121,8 +112,7 @@ input[type="range"]::-webkit-slider-thumb {
 .section-heading {
   font-size: 12px;
 }
-#tax-pni {
-}
+
 #tax-pni input {
   width: 85%;
 }
@@ -135,9 +125,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 #submit-btn {
-  grid-column: 1/3;
-  grid-row: 10;
-  width: 440px;
+  width: 440px; /* todo: probably wrong to use fixed width here */
   height: 40px;
   border-radius: 4px;
   color: white;
@@ -150,12 +138,12 @@ input[type="range"]::-webkit-slider-thumb {
   /*position: absolute;
   left: 0;
   top: 0;*/
-  width: 288px;
-  height: 440px;
+  /* width: 288px;
+  height: 440px; */
   padding: 60px;
   background-color: #eaf6fa;
   /*position: fixed;*/ /* Stay in place */
-  z-index: -1; /* behind main view */
+  /*z-index: -1;*/ /* behind main view */
 }
 
 .results-title {
@@ -199,10 +187,21 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 /* Media Queries */
-/* @media (min-width: 700px) {
-  body {
-    background-color: rgb(176, 188, 211);
-    flex-wrap: nowrap;
+@media (min-width: 800px) {
+  .user-prompt {
+    background-color: rgb(204, 211, 176);
+  }
+  .main-wrapper {
+    width: 740px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
     justify-content: space-around;
   }
-} */
+  #the-form {
+    width: 64%;
+  }
+  #results-section {
+    width: 36%;
+  }
+}
