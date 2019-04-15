@@ -1,23 +1,22 @@
+$text-color: #3e3d3f;
+$results-background: #eaf6fa;
+$submit-button-color: #2277c0;
+$title-color: #005175;
+$slider-ranges-opacity: 0.8;
+
 body {
   margin: 0.5em;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* .Rectangle-35 {
-  width: 300px;
-  height: 431px;
-  object-fit: contain;
-  border-radius: 4px;
-  box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-} */
 .main-wrapper {
   display: flex;
   width: 100%;
   flex-direction: column;
 }
 .main-title {
-  color: #006ea0;
+  color: $title-color;
+  //color: #006ea0;
   font-size: 22px;
   padding: 0.5em;
   margin-bottom: 1em;
@@ -28,9 +27,7 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 4px;
-  color: #3e3d3f;
-  background-color: white;
-  /* desktop: width: 470px; */
+  color: $text-color;
   box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.1);
   padding: 1em;
 }
@@ -65,6 +62,9 @@ body {
   margin: 1em 0;
 }
 
+.flex-slider-block span {
+  opacity: $slider-ranges-opacity;
+}
 /* Slider input formatting */
 input[type="range"] {
   -webkit-appearance: none;
@@ -115,12 +115,13 @@ input[type="range"]::-webkit-slider-thumb {
   height: 40px;
   border-radius: 4px;
   box-shadow: 0 0 4px 0 rgba(62, 61, 63, 0.62);
-  border: solid 1px #3e3d3f;
+  border: solid 1px $text-color;
   background-color: #ffffff;
   padding-left: 1em;
 }
 .section-heading {
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: bold;
   padding-bottom: 0.5em;
 }
 
@@ -131,18 +132,19 @@ input[type="range"]::-webkit-slider-thumb {
 #loan-input-wrapper {
   margin: 0.5em 0;
 }
+
 #loan-input-wrapper input {
   width: 93%;
 }
 
 #submit-btn {
-  width: 100%; /* todo: probably wrong to use fixed width here */
+  width: 100%;
   height: 40px;
   border-radius: 4px;
   color: white;
   font-weight: bold;
   font-size: 1.25em;
-  background-color: #0077c0;
+  background-color: $submit-button-color;
   margin: 1em 0;
 }
 /* Results View */
@@ -152,7 +154,7 @@ input[type="range"]::-webkit-slider-thumb {
   top: 0;*/
   /* width: 288px; */
   height: 400px;
-  background-color: #eaf6fa;
+  background-color: $results-background;
 
   overflow: hidden;
   /*position: fixed;*/ /* Stay in place */
@@ -161,31 +163,31 @@ input[type="range"]::-webkit-slider-thumb {
 
 .results-title {
   font-size: 22px;
-  color: #3e3d3f;
+  color: $text-color;
   margin: 20px;
 }
 .result-heading {
   font-size: 14px;
   margin: 20px;
-  color: #3e3d3f;
+  color: $text-color;
 }
 .result {
   font-size: 18px;
   margin: 1em;
   font-weight: bold;
-  color: #3e3d3f;
+  color: $text-color;
   opacity: 0.2;
 }
 .results-total-heading {
   margin: 20px;
   font-size: 18px;
-  color: #3e3d3f;
+  color: $text-color;
 }
 .results-total {
   font-size: 22px;
   margin: 20px;
   font-weight: bold;
-  color: #3e3d3f;
+  color: $text-color;
 }
 .expand {
   transform: height 1s;
