@@ -136,7 +136,10 @@ input[type="range"]::-webkit-slider-thumb {
 #loan-input-wrapper input {
   width: 93%;
 }
-
+.short-error-portal {
+  // Hide short text by default (resolution > 1200px)
+  display: none;
+}
 #submit-btn {
   width: 100%;
   height: 40px;
@@ -178,6 +181,9 @@ input[type="range"]::-webkit-slider-thumb {
   color: $text-color;
   opacity: 0.2;
 }
+.result-line {
+  border-top: 2px solid $text-color;
+}
 .results-total-heading {
   margin: 20px;
   font-size: 18px;
@@ -203,7 +209,14 @@ input[type="range"]::-webkit-slider-thumb {
   font-weight: bold;
   padding: 5px;
 }
-
+// Used to control conditional text.
+.short-text {
+  display: inline-block;
+}
+// Hide full text by default
+.full-text {
+  display: none;
+}
 /* Media Queries */
 @media (min-width: 800px) {
   .main-wrapper {
@@ -219,5 +232,12 @@ input[type="range"]::-webkit-slider-thumb {
   #results-section {
     width: 36%;
     margin-top: 6em;
+  }
+
+  .short-text {
+    display: none;
+  }
+  .full-text {
+    display: inline-block;
   }
 }

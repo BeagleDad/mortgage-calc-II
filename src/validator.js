@@ -2,7 +2,9 @@ export default class Validator {
   constructor() {
     this.errorMsg = {
       required: "is mandatory",
-      invalidNumber: "value is invalid"
+      shortRequired: "Manditory Field",
+      invalidNumber: "value is invalid",
+      shortInvalidNumber: "Invalid Number"
     };
   }
 
@@ -19,7 +21,8 @@ export default class Validator {
     return this.matchWithRegEx(
       regEx,
       field,
-      `${field.name} ${this.errorMsg.invalidNumber}`
+      `${field.name} ${this.errorMsg.invalidNumber}`,
+      this.errorMsg.shortInvalidNumber
     );
   }
 
@@ -27,7 +30,11 @@ export default class Validator {
   checkIfEmpty(field) {
     if (this.isEmpty(field.value.trim())) {
       // set field invalid
-      this.setInvalid(field, `${field.name} ${this.errorMsg.required}`);
+      this.setInvalid(
+        field,
+        `${field.name} ${this.errorMsg.required}`,
+        this.errorMsg.shortRequired
+      );
       return true;
     } else {
       // set field valid
@@ -42,21 +49,24 @@ export default class Validator {
       return false;
     }
   }
-  setInvalid(field, message) {
+  setInvalid(field, message, shortMessage) {
     field.classList.add("has-error");
-    field.nextElementSibling.innerHTML = message;
+    // Set the two different message to the cooresponding elements
+    let firstSibling = field.nextElementSibling;
+    firstSibling.innerHTML = message;
+    firstSibling.nextElementSibling.innerHTML = shortMessage;
   }
   setValid(field) {
     field.classList.remove("has-error");
     field.nextElementSibling.innerHTML = "";
   }
 
-  matchWithRegEx(regEx, field, message) {
+  matchWithRegEx(regEx, field, message, shortMessage) {
     if (field.value.match(regEx)) {
       this.setValid(field);
       return true;
     } else {
-      this.setInvalid(field, message);
+      this.setInvalid(field, message, shortMessage);
       return false;
     }
   }
