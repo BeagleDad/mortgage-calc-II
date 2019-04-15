@@ -44,6 +44,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 }
 .column {
   display: flex;
@@ -53,7 +54,13 @@ body {
 #year-slide {
   padding-left: 1.6em;
 }
-
+.slider {
+  width: 80%;
+}
+#year-slider,
+#rate-slider {
+  width: 80%;
+}
 #year-slider-block {
   margin: 1em 0;
 }
@@ -62,7 +69,6 @@ body {
 input[type="range"] {
   -webkit-appearance: none;
   margin: 6.8px 0;
-  width: 14em;
 }
 
 input[type="range"]:focus {
@@ -102,7 +108,7 @@ input[type="range"]::-webkit-slider-thumb {
   text-align: center;
   vertical-align: bottom;
   line-height: 40px;
-  margin-left: 2em;
+  margin-left: 1em;
 }
 
 #text-inputs input {
@@ -130,7 +136,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 #submit-btn {
-  width: 440px; /* todo: probably wrong to use fixed width here */
+  width: 100%; /* todo: probably wrong to use fixed width here */
   height: 40px;
   border-radius: 4px;
   color: white;
