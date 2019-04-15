@@ -87,7 +87,7 @@ export default class AppMain {
   setupRateSlider() {
     const rateSlide = document.getElementById("rate-slide");
     rateSlide.value = this.interestRate;
-    this.rateText.innerText = this.interestRate;
+    this.rateText.innerText = this.interestRate.toFixed(1);
     rateSlide.addEventListener("input", this.updateRateSlider.bind(this));
   }
 
@@ -181,18 +181,29 @@ export default class AppMain {
     );
   }
 
-  // Handle submit
+  /**
+   * Handle form submission
+   * First validates fields and stops if any are invalid.
+   * Once all are valid it performs the calculations needed.
+   *
+   * @param {*} event
+   * @returns
+   * @memberof AppMain
+   */
   handleSubmit(e) {
     e.preventDefault();
 
     // validate fields
-    // const loanAmtField = document.getElementById("loan-input");
-    console.log(this.validator.validateCurrencyField(this.loanInput));
-    if (
-      !this.validator.validateCurrencyField(this.loanInput) ||
-      !this.validator.validateCurrencyField(this.taxInput) ||
-      !this.validator.validateCurrencyField(this.insuranceInput)
-    ) {
+
+    // Collect all responses first. This is needed because the validate functions set the elements properties.
+    let validResponses = [];
+    validResponses.push(this.validator.validateCurrencyField(this.loanInput));
+    validResponses.push(this.validator.validateCurrencyField(this.taxInput));
+    validResponses.push(
+      this.validator.validateCurrencyField(this.insuranceInput)
+    );
+    // Once all the responses are collected then check to see if any are invalid and bail if so.
+    if (validResponses.includes(false)) {
       return;
     }
 
@@ -203,6 +214,7 @@ export default class AppMain {
       annualInsurance: this.annualInsurance,
       annualTax: this.annualTax
     });
+    document.getElementById("submit-btn").value = "RECALCULATE";
     this.animateResultView();
   }
   /**

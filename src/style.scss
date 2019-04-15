@@ -1,5 +1,6 @@
 $text-color: #3e3d3f;
 $results-background: #eaf6fa;
+$results-line-color: #cbcbcb;
 $submit-button-color: #2277c0;
 $title-color: #005175;
 $slider-ranges-opacity: 0.8;
@@ -152,15 +153,9 @@ input[type="range"]::-webkit-slider-thumb {
 }
 /* Results View */
 .results-wrapper {
-  /*position: absolute;
-  left: 0;
-  top: 0;*/
-  /* width: 288px; */
   height: 400px;
   background-color: $results-background;
-
   overflow: hidden;
-  /*position: fixed;*/ /* Stay in place */
   z-index: -1; /* behind main view */
 }
 
@@ -182,7 +177,8 @@ input[type="range"]::-webkit-slider-thumb {
   opacity: 0.2;
 }
 .result-line {
-  border-top: 2px solid $text-color;
+  border-top: 2px solid $results-line-color;
+  margin: 1em;
 }
 .results-total-heading {
   margin: 20px;
@@ -211,7 +207,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 // Used to control conditional text.
 .short-text {
-  display: inline-block;
+  display: flex;
 }
 // Hide full text by default
 .full-text {
@@ -238,6 +234,6 @@ input[type="range"]::-webkit-slider-thumb {
     display: none;
   }
   .full-text {
-    display: inline-block;
+    display: flex;
   }
 }
