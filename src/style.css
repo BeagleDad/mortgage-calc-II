@@ -16,10 +16,12 @@ body {
   width: 100%;
   flex-direction: column;
 }
-.title {
+.main-title {
   color: #006ea0;
   font-size: 22px;
-  padding: 2px;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  width: 100%;
   border-bottom: 1px solid #9e99a3;
 }
 #the-form {
@@ -33,9 +35,10 @@ body {
   padding: 1em;
 }
 #the-form .user-prompt {
-  padding: 2px;
+  padding: 1em;
   border-bottom: 1px solid #9e99a3;
 }
+
 /* Flexbox classes */
 .row {
   display: flex;
@@ -46,12 +49,13 @@ body {
   display: flex;
   flex-direction: column;
 }
-.flex-slider-block {
-  /* justify-content: space-around; */
-  margin: 1em 0 1em 0;
-}
+
 #year-slide {
   padding-left: 1.6em;
+}
+
+#year-slider-block {
+  margin: 1em 0;
 }
 
 /* Slider input formatting */
@@ -111,15 +115,16 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .section-heading {
   font-size: 12px;
+  padding-bottom: 0.5em;
 }
 
 #tax-pni input {
   width: 85%;
 }
 
-/* #loan-input-wrapper{
-  margin: 1em; 
-} */
+#loan-input-wrapper {
+  margin: 0.5em 0;
+}
 #loan-input-wrapper input {
   width: 93%;
 }
@@ -132,16 +137,17 @@ input[type="range"]::-webkit-slider-thumb {
   font-weight: bold;
   font-size: 1.25em;
   background-color: #0077c0;
+  margin: 1em 0;
 }
 /* Results View */
 .results-wrapper {
   /*position: absolute;
   left: 0;
   top: 0;*/
-  /* width: 288px;
-  height: 440px; */
-  padding: 60px;
+  /* width: 288px; */
+  height: 400px;
   background-color: #eaf6fa;
+  margin-top: 6em;
   /*position: fixed;*/ /* Stay in place */
   /*z-index: -1;*/ /* behind main view */
 }
@@ -158,7 +164,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .result {
   font-size: 18px;
-  margin: 20px;
+  margin: 1em;
   font-weight: bold;
   color: #3e3d3f;
   opacity: 0.2;
@@ -188,9 +194,6 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* Media Queries */
 @media (min-width: 800px) {
-  .user-prompt {
-    background-color: rgb(204, 211, 176);
-  }
   .main-wrapper {
     width: 740px;
     margin-left: auto;
@@ -198,7 +201,7 @@ input[type="range"]::-webkit-slider-thumb {
     flex-direction: row;
     justify-content: space-around;
   }
-  #the-form {
+  #form-wrapper {
     width: 64%;
   }
   #results-section {
