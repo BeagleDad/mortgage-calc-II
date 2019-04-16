@@ -74,7 +74,8 @@ export default class AppMain {
    * @memberof AppMain
    */
   updateRateSlider(e) {
-    this.interestRate = e.target.value;
+    this.interestRate = parseFloat(e.target.value).toFixed(1);
+    console.log(this.interestRate);
     this.rateText.innerText = this.interestRate;
   }
   /**
