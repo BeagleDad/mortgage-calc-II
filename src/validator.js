@@ -17,13 +17,14 @@ export default class Validator {
     // Check for valid number
 
     // regex: dollar sign, decimals, and commas optional, but limited to eight sig figs
+    /* TODO: don't need this anymore since unsing AutoNumeric -  input can't be invalid.
     const regEx = /^\$?\s?((\d{1,3})(?:,[0-9]{3}){0,1}|(\d{1})(?:,[0-9]{3}){0,2}|(\d{1,7}))(\.\d{1,2})?$/g;
     return this.matchWithRegEx(
       regEx,
       field,
       `${field.name} ${this.errorMsg.invalidNumber}`,
       this.errorMsg.shortInvalidNumber
-    );
+    ); */
   }
 
   // Utility functions
@@ -43,7 +44,7 @@ export default class Validator {
     }
   }
   isEmpty(value) {
-    if (value === "") {
+    if (value === "$") {
       return true;
     } else {
       return false;

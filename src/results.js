@@ -25,14 +25,26 @@ export default class Results {
 
     const elTot = document.getElementById("res-total");
 
-    elPni.innerHTML = `$ ${principleAndInterest.toFixed(2)}`;
+    elPni.innerHTML = principleAndInterest.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD"
+    });
     elPni.style.opacity = "initial";
 
-    elTax.innerHTML = `$ ${monthlyTax.toFixed(2)}`;
+    elTax.innerHTML = monthlyTax.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD"
+    });
     elTax.style.opacity = "initial";
-    elIns.innerHTML = `$ ${monthlyInsurance.toFixed(2)}`;
+    elIns.innerHTML = monthlyInsurance.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD"
+    });
     elIns.style.opacity = "initial";
-    elTot.innerHTML = `$ ${monthlyPayment.toFixed(2)}`;
+    elTot.innerHTML = monthlyPayment.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD"
+    });
     elTot.style.opacity = "initial";
     // console.log(
     //   "pni: " +

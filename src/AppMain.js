@@ -1,5 +1,6 @@
 import Validator from "./validator";
 import Results from "./results";
+import AutoNumeric from "../node_modules/autonumeric/dist/autoNumeric";
 
 //const Validator = new Validator();
 
@@ -32,9 +33,15 @@ export default class AppMain {
     this.rateText = document.getElementById("rate-value");
     this.setupYearInput();
     this.setupRateSlider();
-    this.setupLoanInput();
-    this.setupTaxInput();
-    this.setupInsuranceInput();
+    this.loanInput = this.setupCurrencyInput(
+      document.getElementById("loan-input")
+    );
+    this.taxInput = this.setupCurrencyInput(
+      document.getElementById("tax-input")
+    );
+    this.insuranceInput = this.setupCurrencyInput(
+      document.getElementById("insurance-input")
+    );
     this.setupForm();
   }
 
@@ -75,7 +82,6 @@ export default class AppMain {
    */
   updateRateSlider(e) {
     this.interestRate = parseFloat(e.target.value).toFixed(1);
-    console.log(this.interestRate);
     this.rateText.innerText = this.interestRate;
   }
   /**
@@ -92,57 +98,23 @@ export default class AppMain {
     rateSlide.addEventListener("input", this.updateRateSlider.bind(this));
   }
 
-  // Setup loan input
+  setupCurrencyInput(elem) {
+    const currencyOptions = {
+      currencySymbol: "$",
+      decimalCharacter: ".",
+      digitGroupSeparator: ",",
+      currencySymbolPlacement: "p",
+      caretPositionOnFocus: "start",
+      emptyInputBehavior: "always",
+      negativePositiveSignPlacement: "r"
+    };
 
-  /**
-   * Sets up the Loan Amount input
-   *    Adds the event listener.
-   *
-   * @memberof AppMain
-   */
-  setupLoanInput() {
-    this.loanInput = document.getElementById("loan-input");
-    this.loanInput.addEventListener("input", this.updateLoanAmt.bind(this));
-  }
+    return new AutoNumeric(elem, currencyOptions);
 
-  /**
-   *Event handler for the Loan Amount input
-   *
-   * @param {*} e  - the event object.
-   * @memberof AppMain
-   */
-  updateLoanAmt(e) {
-    // Remove formatting before storing value in class.
-    //console.log(e.target.value);
-    this.loanAmount = e.target.value.replace(/\$|\s|,/, "").trim();
-    //console.log("stored: ", this.loanAmount);
-    // Add formatting to show in DOM
-    this.loanInput.value = `$ ${this.loanAmount}`;
+    // TODO: not using this anymore since using autoNumeric
+    //this.loanInput.addEventListener("keyup", this.updateLoanAmt.bind(this));
   }
 
-  // Setup tax input
-  /**
-   *Event handler for the Tax amount input
-   *
-   * @param {*} e  - the event object.
-   * @memberof AppMain
-   */
-  updateTax(e) {
-    // Remove formatting before storing value in class.
-    this.annualTax = e.target.value.replace(/\$|\s|,/, "").trim();
-    // Add formatting to show in DOM
-    this.taxInput.value = `$ ${this.annualTax}`;
-  }
-  /**
-   * Sets up the Tax Amount input
-   *    Adds the event listener.
-   *
-   * @memberof AppMain
-   */
-  setupTaxInput() {
-    this.taxInput = document.getElementById("tax-input");
-    this.taxInput.addEventListener("input", this.updateTax.bind(this));
-  }
   // todo: may not use this.
   formatCurrency(rv) {
     //console.log("raw val: " + rv);
@@ -152,34 +124,6 @@ export default class AppMain {
       currency: "USD"
     });
     return rval;
-  }
-  // Setup Insurance Input
-  /**
-   * Event handler for Insurance Input
-   *
-   * @param {*} e
-   * @memberof AppMain
-   */
-  updateInsurance(e) {
-    // Remove formatting before storing value in class.
-    this.annualInsurance = e.target.value.replace(/\$|\s|,/, "").trim();
-
-    // Add formatting to show in DOM
-    this.insuranceInput.value = `$ ${this.annualInsurance}`;
-  }
-  /**
-   * Sets up the Insurance amount input,
-   * stores the element reference and
-   * adds the event listener.
-   *
-   * @memberof AppMain
-   */
-  setupInsuranceInput() {
-    this.insuranceInput = document.getElementById("insurance-input");
-    this.insuranceInput.addEventListener(
-      "input",
-      this.updateInsurance.bind(this)
-    );
   }
 
   /**
@@ -195,25 +139,27 @@ export default class AppMain {
     e.preventDefault();
 
     // validate fields
-
     // Collect all responses first. This is needed because the validate functions set the elements properties.
     let validResponses = [];
-    validResponses.push(this.validator.validateCurrencyField(this.loanInput));
-    validResponses.push(this.validator.validateCurrencyField(this.taxInput));
     validResponses.push(
-      this.validator.validateCurrencyField(this.insuranceInput)
+      this.validator.validateCurrencyField(this.loanInput.node())
+    );
+    validResponses.push(
+      this.validator.validateCurrencyField(this.taxInput.node())
+    );
+    validResponses.push(
+      this.validator.validateCurrencyField(this.insuranceInput.node())
     );
     // Once all the responses are collected then check to see if any are invalid and bail if so.
     if (validResponses.includes(false)) {
       return;
     }
-
     this.results.calcResults({
       interestRate: this.interestRate,
-      loanAmount: this.loanAmount,
       yearsOfMortgage: this.yearsOfMortgage,
-      annualInsurance: this.annualInsurance,
-      annualTax: this.annualTax
+      loanAmount: this.loanInput.get(),
+      annualTax: this.taxInput.get(),
+      annualInsurance: this.insuranceInput.get()
     });
     document.getElementById("submit-btn").value = "RECALCULATE";
     this.animateResultView();
